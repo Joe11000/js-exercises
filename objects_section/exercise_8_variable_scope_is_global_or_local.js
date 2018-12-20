@@ -1,3 +1,6 @@
+// primatives are passed and copied by value 
+// objects (arrays, functions, objects) are passed and copied by reference
+
 let global_variable = 0
 
 function add1(){
