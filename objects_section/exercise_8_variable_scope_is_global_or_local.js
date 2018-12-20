@@ -15,7 +15,6 @@ function add3(){
     }
 }
 add1(); add2(); add3();
-debugger
 console.log('test_1', global_variable === 6)
 
 
