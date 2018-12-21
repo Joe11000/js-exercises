@@ -1,37 +1,37 @@
-// primatives are passed and copied by value 
-// objects (arrays, functions, objects) are passed and copied by reference
+// The Take Away is : Don't use var because it has function scope and not the local block scope
 
-let global_variable = 0
+// var is confined to anywhere in the containing function scope and gets hoisted to the top of the function 
+// let and const are confined to block scope
 
-function add1(){
-  global_variable++
+// create block scope variable 'i'
+function start1(){
+  for(let i = 0; i < 5; i++){
+    console.log(i)
+  }
+  try{
+    console.log(i)
+  }
+  catch(e){
+    console.log('test_1', true)
+  }
 }
-function add2(){
-    global_variable += 2
-}
-function add3(){
-    return {
-        global_variable: global_variable += 3
-    }
-}
-add1(); add2(); add3();
-console.log('test_1', global_variable === 6)
+start1();
 
+// create function scope variable 'i'
+function start1(){
+  for(var i = 0; i < 5; i++){
+    console.log(i)
+  }
 
-function dontadd50(){
-    let global_variable = 50
-    global_variable += 50
-    return (global_variable)
+  console.log('test_2', i === 5)
 }
-function dontadd150(){
-    const global_variable = {global_variable: undefined}
-    global_variable.global_variable = 250
-    return (global_variable)
+start1();
+
+//////////////// Problem 2 is using 'var' with global variables. It attaches that global variable it to the window object
+var global_variable_attached_to_window = 'red'
+let global_variable_not_attached_to_window = 'blue'
+
+// global function not encapsulated in a module and is accessable from the browsers window
+function sayHi(){
+
 }
-function dontadd250(){
-    var global_variable = 50
-    global_variable += 250
-    return (global_variable)
-}
-dontadd50(); dontadd150(); dontadd250();
-console.log('test_2', global_variable === 6)
